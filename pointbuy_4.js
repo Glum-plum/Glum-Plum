@@ -10,18 +10,19 @@ const pointCost = {
     15: 9
 };
 
-// Define the racial and subrace modifiers
+// Define the racial modifiers
 const raceModifiers = {
     human: { strength: 1, dexterity: 1, constitution: 1, intelligence: 1, wisdom: 1, charisma: 1,statchoice: false},
     elf: { strength: 0, dexterity: 2, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0, statchoice: false },
     dwarf: { strength: 0, dexterity: 0, constitution: 2, intelligence: 0, wisdom: 0, charisma: 0, statchoice: false },
     halfling: { strength: 0, dexterity: 2, constitution: 0, intelligence: 0, wisdom: 0, charisma: 0, statchoice: false },
     tiefling: { strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 2, statchoice: false },
-    halfelf: { strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 2, statchoice:true, bonus1: 1, bonus2: 1},
+    halfelf: { strength: 0, dexterity: 0, constitution: 0, intelligence: 0, wisdom: 0, charisma: 2, statchoice: true},
     aarakocra: { strength: 0, dexterity: 2, constitution: 0, intelligence: 0, wisdom: 1, charisma: 0, statchoice: false },
 
 };
 
+// Define the subrace modifiers
 const subraceModifiers = {
     "high-elf": { intelligence: 1 },
     "wood-elf": { wisdom: 1 },
@@ -65,24 +66,75 @@ function applyRaceModifiers(attributes, race, subrace = null) {
 
 
 // Show or hide the custom bonuses dropdowns
-function toggleCustomBonuses(race) {
+function toggleCustomBonuses(selectedRace) {
     const customBonusesDiv = document.getElementById("statchoice");
-    if (raceModifiers[race]?.statchoice) {
-        customBonusesDiv.style.display = "block"; 
+
+    if (raceModifiers[selectedRace]?.statchoice === true) {
+        customBonusesDiv.style.display = "block"; // Show the bonus section
+        resetBonusSelections(); // Ensure selections are reset every time it's shown
     } else {
-        customBonusesDiv.style.display = "none"; 
-        document.getElementById("bonus1").value = "";
-        document.getElementById("bonus2").value = "";
+        customBonusesDiv.style.display = "none"; // Hide for races without stat choice
+        resetBonusSelections(); // Clear any previous selections when hidden
     }
 }
+
+function resetBonusSelections() {
+    const bonus1Select = document.getElementById("bonus1");
+    const bonus2Select = document.getElementById("bonus2");
+
+    // Reset values
+    bonus1Select.value = "";
+    bonus2Select.value = "";
+
+    // Enable all options in both dropdowns
+    Array.from(bonus1Select.options).forEach(option => option.disabled = false);
+    Array.from(bonus2Select.options).forEach(option => option.disabled = false);
+}
+
+document.getElementById("bonus1").addEventListener("change", function () {
+    const bonus2 = document.getElementById("bonus2");
+    const selectedValue = this.value;
+
+    // Enable all options before selectively disabling the chosen one
+    Array.from(bonus2.options).forEach(option => {
+        option.disabled = false;
+        if (option.value === selectedValue && selectedValue !== "") {
+            option.disabled = true; // Disable the same selection in bonus2
+        }
+    });
+});
+
+document.getElementById("bonus2").addEventListener("change", function () {
+    const bonus1 = document.getElementById("bonus1");
+    const selectedValue = this.value;
+
+    // Enable all options before selectively disabling the chosen one
+    Array.from(bonus1.options).forEach(option => {
+        option.disabled = false;
+        if (option.value === selectedValue && selectedValue !== "") {
+            option.disabled = true; // Disable the same selection in bonus1
+        }
+    });
+});
+
+// Event listener to ensure custom bonuses are toggled correctly on race change
+document.getElementById("race").addEventListener("change", function () {
+    const selectedRace = this.value;
+    updateSubraceOptions();
+    toggleCustomBonuses(selectedRace);
+});
+
+
 
 
 // Event listener for race selection to handle custom bonuses
 document.getElementById("race").addEventListener("change", function () {
     const selectedRace = this.value;
     updateSubraceOptions();
-    toggleCustomBonuses(selectedRace);
+    toggleCustomBonuses(selectedRace); 
 });
+
+
 document.getElementById("bonus1").addEventListener("change", function () {
     const bonus2 = document.getElementById("bonus2");
     const selected = this.value;
@@ -162,20 +214,39 @@ function updatePointBuy() {
 
 // Function to apply racial and subrace modifiers
 function applyRaceModifiers(attributes, race, subrace = null) {
+    // Apply the base race modifiers (like strength, dexterity, etc.)
     if (raceModifiers[race]) {
         Object.keys(raceModifiers[race]).forEach(stat => {
-            attributes[stat] += raceModifiers[race][stat];
+            if (stat !== "statchoice") {
+                attributes[stat] += raceModifiers[race][stat];
+            }
         });
     }
 
+    // Apply subrace-specific modifiers if applicable
     if (subrace && subraceModifiers[subrace]) {
         Object.keys(subraceModifiers[subrace]).forEach(stat => {
             attributes[stat] += subraceModifiers[subrace][stat];
         });
     }
 
+    // Apply stat choice bonuses for races like Half-Elf
+    if (raceModifiers[race]?.statchoice) {
+        const bonus1 = document.getElementById("bonus1").value;
+        const bonus2 = document.getElementById("bonus2").value;
+
+        if (bonus1 && bonus2 && bonus1 !== bonus2) {
+            // Apply the bonus only if the selected stats are valid
+            attributes[bonus1] += 1;
+            attributes[bonus2] += 1;
+        } else {
+            alert("Please select two distinct stats for the racial bonuses.");
+        }
+    }
+
     return attributes;
 }
+
 
 // Function to calculate final attributes
 function calculateFinalAttributes() {
