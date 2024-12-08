@@ -4,24 +4,93 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Point Buy Character Creation</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-KyZXEAg3QhqLMpG8r+Knujsl5/7hb5l9G1xj4jjGJxyXEjA6VzzSmQwoS8eXK5lP" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
     <style>
-        .description {
-            margin-top: 20px;
-            font-size: 1.1em;
+        body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #0c1f32;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #403934;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 700;
+}
+
+label, #final-attributes, #details-content {
+    font-family: 'Roboto', sans-serif;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+        body {
+            background-color: #0c1f32;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
         }
-        .description h2 {
-            margin-bottom: 10px;
+        .container {
+            margin-top: 0;
+            padding: 20px;
+            background: rgb(107, 137, 200);
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            text-align: center; /* Center the text inside the box */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #403934;
+        }
+        label {
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        #statchoice {
+            margin-top: 15px;
+        }
+        .stats-section {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+        .stats-section > div {
+            flex: 1 1 calc(33% - 10px);
+            margin: 5px;
+        }
+        .description {
+            margin-top: 30px;
+            padding: 10px;
+            background-color: #403af1;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
         }
     </style>
 </head>
 <body>
 <div class="container">
-    <h1>Character Creation</h1>
+    <h1>DnD 5e Point Buy Calculator</h1>
     <form id="character-form">
-        <div>
+        <div class="form-group">
             <label for="race">Race:</label>
-            <select id="race">
+            <select id="race" class="form-control">
                 <option value="human">Human</option>
                 <option value="elf">Elf</option>
                 <option value="dwarf">Dwarf</option>
@@ -31,75 +100,72 @@
             </select>
         </div>
 
-        <div>
+        <div class="form-group">
             <label for="subrace">Subrace:</label>
-            <select id="subrace">
+            <select id="subrace" class="form-control">
                 <!-- Subrace options will be dynamically populated -->
             </select>
         </div>
 
-        <div>
-            <label for="strength">Strength:</label>
-            <input type="number" id="strength" value="8" min="8" max="15">
+        <div class="stats-section">
+            <div>
+                <label for="strength">Strength:</label>
+                <input type="number" id="strength" class="form-control" value="8" min="8" max="15">
+            </div>
+            <div>
+                <label for="dexterity">Dexterity:</label>
+                <input type="number" id="dexterity" class="form-control" value="8" min="8" max="15">
+            </div>
+            <div>
+                <label for="constitution">Constitution:</label>
+                <input type="number" id="constitution" class="form-control" value="8" min="8" max="15">
+            </div>
+            <div>
+                <label for="intelligence">Intelligence:</label>
+                <input type="number" id="intelligence" class="form-control" value="8" min="8" max="15">
+            </div>
+            <div>
+                <label for="wisdom">Wisdom:</label>
+                <input type="number" id="wisdom" class="form-control" value="8" min="8" max="15">
+            </div>
+            <div>
+                <label for="charisma">Charisma:</label>
+                <input type="number" id="charisma" class="form-control" value="8" min="8" max="15">
+            </div>
         </div>
-        <div>
-            <label for="dexterity">Dexterity:</label>
-            <input type="number" id="dexterity" value="8" min="8" max="15">
-        </div>
-        <div>
-            <label for="constitution">Constitution:</label>
-            <input type="number" id="constitution" value="8" min="8" max="15">
-        </div>
-        <div>
-            <label for="intelligence">Intelligence:</label>
-            <input type="number" id="intelligence" value="8" min="8" max="15">
-        </div>
-        <div>
-            <label for="wisdom">Wisdom:</label>
-            <input type="number" id="wisdom" value="8" min="8" max="15">
-        </div>
-        <div>
-            <label for="charisma">Charisma:</label>
-            <input type="number" id="charisma" value="8" min="8" max="15">
-        </div>
+
         <div id="statchoice">
             <label for="bonus1">Choose Stat for +1 Bonus (1):</label>
-            <select id="bonus1">
+            <select id="bonus1" class="form-control">
                 <option value="">-- Select Stat --</option>
                 <option value="strength">Strength</option>
                 <option value="dexterity">Dexterity</option>
                 <option value="constitution">Constitution</option>
                 <option value="intelligence">Intelligence</option>
                 <option value="wisdom">Wisdom</option>
-                <option value="charisma">Charisma</option>
             </select>
-        
             <label for="bonus2">Choose Stat for +1 Bonus (2):</label>
-            <select id="bonus2">
+            <select id="bonus2" class="form-control">
                 <option value="">-- Select Stat --</option>
                 <option value="strength">Strength</option>
                 <option value="dexterity">Dexterity</option>
                 <option value="constitution">Constitution</option>
                 <option value="intelligence">Intelligence</option>
                 <option value="wisdom">Wisdom</option>
-                <option value="charisma">Charisma</option>
             </select>
         </div>
-        
-        
-        
 
-        <div>
+        <div class="form-group">
             <label>Total Cost:</label>
-            <span id="totalCost">0</span>
+            <span id="totalCost" class="badge bg-info">0</span>
         </div>
 
-        <div>
+        <div class="form-group">
             <label>Remaining Points:</label>
-            <span id="remainingPoints">27</span>
+            <span id="remainingPoints" class="badge bg-success">27</span>
         </div>
 
-        <button type="button" id="calculate-btn">Calculate Final Attributes</button>
+        <button type="button" id="calculate-btn" class="btn btn-primary mt-3">Calculate Final Attributes</button>
     </form>
 
     <div id="final-attributes" class="description">
@@ -112,7 +178,8 @@
 
     <script src="descriptions.js" defer></script>
     <script src="pointbuy_4.js" defer></script>
+    
+    
 </div>
 </body>
 </html>
-
