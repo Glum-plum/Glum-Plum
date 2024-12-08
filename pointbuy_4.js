@@ -64,15 +64,15 @@ const subraceOptions = {
         { value: "stout-halfling", label: "Stout Halfling" }
     ],
     tiefling: [
-        { value: "asmodeus-tiefling", label: "Asmodeus Tiefling" },
-        { value: "baalzebul-tiefling", label: "Baalzebul Tiefling" },
-        { value: "dispater-tiefling", label: "Dispater Tiefling" },
-        { value: "fierna-tiefling", label: "Fierna Tiefling" },
-        { value: "glasya-tiefling", label: "Glasya Tiefling" },
-        { value: "levistus-tiefling", label: "Levistus Tiefling" },
-        { value: "mammon-tiefling", label: "Mammon Tiefling" },
-        { value: "mephistopheles-tiefling", label: "Mephistopheles Tiefling" },
-        { value: "zariel-tiefling", label: "Zariel Tiefling" }
+        { value: "asmodeus-tiefling", label: "Bloodline of Asmodeus" },
+        { value: "baalzebul-tiefling", label: "Bloodline of Baalzebul" },
+        { value: "dispater-tiefling", label: "Bloodline of Dispater" },
+        { value: "fierna-tiefling", label: "Bloodline of Fierna" },
+        { value: "glasya-tiefling", label: "Bloodline of Glasya" },
+        { value: "levistus-tiefling", label: "Bloodline of Levistus" },
+        { value: "mammon-tiefling", label: "Bloodline of Mammon" },
+        { value: "mephistopheles-tiefling", label: "Bloodline of Mephistopheles" },
+        { value: "zariel-tiefling", label: "Bloodline of Zariel" }
     ],
     dragonborn: [
         { value: "black-dragonborn", label: "Black Dragonborn" },
@@ -282,3 +282,4 @@ document.getElementById("bonus2").addEventListener("change", function () {
         this.value = "";
     }
 });
+
