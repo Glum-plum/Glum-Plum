@@ -1,4 +1,3 @@
-
 // Point buy cost table
 const pointCost = {
     8: 0,
@@ -97,27 +96,22 @@ const subraceOptions = {
         { value: "forest-gnome", label: "Forest Gnome" }, 
         { value: "rock-gnome", label: "Rock Gnome" }
     ]
-
 };
-
 
 // Function to apply racial and subrace modifiers
 function applyRaceModifiers(attributes, race, subrace = null) {
-    // Apply race-specific modifiers
     if (raceModifiers[race]) {
         Object.keys(raceModifiers[race]).forEach(stat => {
             if (stat !== "statchoice") attributes[stat] += raceModifiers[race][stat];
         });
     }
 
-    // Apply subrace-specific modifiers, if applicable
     if (subrace && subraceModifiers[subrace]) {
         Object.keys(subraceModifiers[subrace]).forEach(stat => {
             attributes[stat] += subraceModifiers[subrace][stat];
         });
     }
 
-    // Handle custom bonuses for races with stat choices (e.g., Half-Elf)
     if (raceModifiers[race]?.statchoice) {
         const bonus1 = document.getElementById("bonus1").value;
         const bonus2 = document.getElementById("bonus2").value;
@@ -132,6 +126,20 @@ function applyRaceModifiers(attributes, race, subrace = null) {
 
     return attributes;
 }
+
+// Function to disable the Calculate button if "Select a Race" is chosen
+function updateCalculateButtonState() {
+    const raceSelect = document.getElementById('race');
+    const calculateButton = document.getElementById('calculate-btn');
+    calculateButton.disabled = raceSelect.value === "selectrace";
+}
+
+// Event listener for race selection to disable the calculate button if "Select a Race" is chosen
+document.getElementById('race').addEventListener('change', () => {
+    updateSubraceOptions();
+    toggleCustomBonuses();
+    updateCalculateButtonState();  // Update button state on race change
+});
 
 // Update subrace options based on the selected race
 function updateSubraceOptions() {
@@ -228,11 +236,14 @@ function showDetails(race, subrace) {
     `;
 }
 
-
-
-
 // Event listeners
-document.getElementById('calculate-btn').addEventListener('click', calculateFinalAttributes);
+document.getElementById('calculate-btn').addEventListener('click', () => {
+    const raceSelect = document.getElementById('race').value;
+    if (raceSelect === "selectrace") {
+        return;  // Do nothing if "Select a Race" is chosen
+    }
+    calculateFinalAttributes();  // Call the original calculation function
+});
 
 // Attach event listener for each input to trigger point-buy updates dynamically
 const inputs = document.querySelectorAll('input[type="number"]');
@@ -250,17 +261,12 @@ document.getElementById('race').addEventListener('change', () => {
 function toggleCustomBonuses(selectedRace) {
     const customBonusesDiv = document.getElementById("statchoice");
 
-    console.log(`Selected race: ${selectedRace}`);
-    
     if (selectedRace === "halfelf") {
         customBonusesDiv.style.display = "block"; // Show for Half-Elf
-        console.log('Showing custom bonuses');
     } else {
         customBonusesDiv.style.display = "none"; // Hide for all other races
-        console.log('Hiding custom bonuses');
     }
 }
-
 
 // Event listener for race selection to handle custom bonuses
 document.getElementById("race").addEventListener("change", function () {
@@ -269,12 +275,10 @@ document.getElementById("race").addEventListener("change", function () {
     toggleCustomBonuses(selectedRace);  // Ensure this is correctly handled
 });
 
-
 document.getElementById("bonus2").addEventListener("change", function () {
     const bonus1 = document.getElementById("bonus1");
     if (this.value === bonus1.value) {
         alert("Please select two different stats.");
-        bonus1.selectedIndex = 0;  // Reset bonus1 selection
+        this.value = "";
     }
 });
-
