@@ -111,7 +111,7 @@
             text-align: right;
         }
 
-        /* Fix: Only center the race and subrace titles */
+        
         #details-content {
             text-align: left;
             margin-top: 30px;
@@ -135,6 +135,7 @@
         <div class="form-group">
             <label for="race">Race:</label>
             <select id="race" class="form-control">
+                <option value="selectrace">Select a Race</option>
                 <option value="human">Human</option>
                 <option value="elf">Elf</option>
                 <option value="dwarf">Dwarf</option>
@@ -181,6 +182,18 @@
             </div>
         </div>
 
+       
+
+        <div class="form-group">
+            <label>Total Cost:</label>
+            <span id="totalCost" class="badge bg-info">0</span>
+        </div>
+
+        <div class="form-group">
+            <label>Remaining Points:</label>
+            <span id="remainingPoints" class="badge bg-success">27</span>
+        </div>
+
         <div id="statchoice">
             <label for="bonus1">Choose Stat for +1 Bonus (1):</label>
             <select id="bonus1" class="form-control">
@@ -202,17 +215,8 @@
             </select>
         </div>
 
-        <div class="form-group">
-            <label>Total Cost:</label>
-            <span id="totalCost" class="badge bg-info">0</span>
-        </div>
+        <button type="button" id="calculate-btn" class="btn btn-primary mt-3" disabled>Calculate Final Attributes</button>
 
-        <div class="form-group">
-            <label>Remaining Points:</label>
-            <span id="remainingPoints" class="badge bg-success">27</span>
-        </div>
-
-        <button type="button" id="calculate-btn" class="btn btn-primary mt-3">Calculate Final Attributes</button>
     </form>
 
     <div id="final-attributes" class="description">
@@ -224,10 +228,12 @@
         <div class="race">
             <!-- Race name will be centered here -->
         </div>
+        <br>
         <div class="subrace">
             <!-- Subrace name will be centered here -->
         </div>
     </div>
+    
 
     <script src="descriptions.js" defer></script>
     <script src="pointbuy_4.js" defer></script>
