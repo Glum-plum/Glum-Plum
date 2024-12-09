@@ -1,7 +1,14 @@
 Glum-plum
+
 Drake Jones
+
 Fall 2024
+
 DnD 5th Edition Point-Buy Calculator
+
+Demonstration Video:
+https://youtu.be/1SEu07kd01Q
+
 
 
 
