@@ -21,7 +21,7 @@ I've never even seen before? I really thought I would have to begrudgingly ask f
 trying to understand where I went wrong and how to fix it, then how to better it, and repeat that cycle again and again. But like I already said, I'm glad I ended up sticking with this project, because it 
 follows a topic I am passionate about. With what I managed to learn and accomplish, I'm actually understanding this enough that I can keep working on this and polishing it further even after this gets graded.
 I'll probably add every race and subrace next since it's an easy addition, and simply a matter of being extremely time consuming to properly format each description of every race and subrace, and then after that 
-maybe I can look into creating a function that ports the end results into a PDF of a 5e Character sheet. But that is for later, since my time for development is up.
+maybe I can look into creating a function that ports the end results into a PDF of a 5e Character sheet. But that is for later, since my time for development is up.</p>
 
 I had so many issues and problems I encountered, I can't possibly even remember every single one of them. That said, I think one coding issue that consistently plagued me was that the choice stats would stay 
 visible for races that didn't get choice stats, or races that DID get choice stats would keep the options hidden and lock it out of selection since I also added a feature that prevents a stat-choice race from 
