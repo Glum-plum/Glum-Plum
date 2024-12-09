@@ -42,6 +42,7 @@ of trouble with properly importing descriptions.js, which was extremely importan
 For reference, the reason it is called 4 is because the first three attempts were such catastrophic failures I genuinely felt that I was better have starting from scratch than trying to salvage the mess I made in 
 those attempts. I don't like staying organized, it's tedious and time-consuming. But after all the problems I encountered, I did my best to try and consistently add notes and labels both for myself and for you who 
 will be looking that code over. 
+
 Outside of coding issues, there were plenty of logistical issues I had to deal with. Near the start of this semester, I was working 40+ hour workweeks along with my fulltime schedule here at Temple, and I was in 
 the process of closing on a house, Which made the start incredibly rough for me, trying to manage my time to the point that a 15 minute delay could cause major problems, and was overall unpleasantly stressful.
 While I closed on the house and finished with all of the emails and calls and paperwork, I still have a mortgage to handle, and I am not fortunate enough to have safety nets like having my parents help pay for 
