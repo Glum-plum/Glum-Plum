@@ -1,3 +1,10 @@
+Glum-plum
+Drake Jones
+Fall 2024
+DnD 5th Edition Point-Buy Calculator
+
+
+
 Access to the site:
 https://glum-plum.github.io/Glum-Plum/
 
