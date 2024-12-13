@@ -1,0 +1,31 @@
+{
+  "name": "glum-plum-dnd-calculator",
+  "version": "1.0.0",
+  "description": "DnD 5th Edition Point-Buy Calculator",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run lite",
+    "lite": "lite-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Glum-plum/Glum-Plum.git"
+  },
+  "keywords": [
+    "DND",
+    "Calculator"
+  ],
+  "author": "Drake Jones",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Glum-plum/Glum-Plum/issues"
+  },
+  "homepage": "https://github.com/Glum-plum/Glum-Plum#readme",
+  "devDependencies": {
+    "lite-server": "^2.6.1"
+  },
+  "dependencies": {
+    "bootstrap": "^5.3.3"
+  }
+}

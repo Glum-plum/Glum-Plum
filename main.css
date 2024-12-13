@@ -1,0 +1,118 @@
+body {
+    font-family: "Roboto", sans-serif;
+    background-color: #0c1f32;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    min-height: 100vh;
+    margin: 0;
+    overflow: auto;
+  }
+
+  .container {
+    margin-top: 0;
+    padding: 20px;
+    background: rgb(107, 137, 200);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    max-height: 90vh;
+    overflow-y: auto;
+  }
+
+  h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #403934;
+  }
+
+  label,
+  #final-attributes,
+  #details-content {
+    font-family: "Roboto", sans-serif;
+  }
+
+  .form-group {
+    margin-bottom: 15px;
+  }
+
+  .stats-section {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+
+  .stats-section > div {
+    flex: 1 1 calc(33% - 10px);
+    margin: 5px;
+  }
+
+  .description {
+    margin-top: 30px;
+    padding: 10px;
+    background-color: #403af1;
+    border-radius: 5px;
+  }
+
+  button {
+    width: 100%;
+  }
+
+  #final-attributes {
+    padding: 20px;
+    background-color: #403af1;
+    border-radius: 5px;
+    margin-top: 20px;
+    width: 7%;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  #final-attributes ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+  }
+
+  #final-attributes li {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+
+  #final-attributes li span {
+    display: inline-block;
+    text-align: left;
+  }
+
+  #final-attributes li .attribute {
+    text-align: left;
+  }
+
+  #final-attributes li .modifier {
+    text-align: right;
+  }
+
+  #details-content {
+    text-align: left;
+    margin-top: 30px;
+    padding: 10px;
+    background-color: #403af1;
+    border-radius: 5px;
+  }
+
+  /* Specifically target the race and subrace for centering */
+  #details-content .race,
+  #details-content .subrace {
+    text-align: center;
+  }
